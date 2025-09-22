@@ -1,0 +1,107 @@
+<!-- /index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Shop · Portfolio</title>
+  <meta name="description" content="A minimal e-commerce demo hosted on GitHub Pages." />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <style>
+    /* WHY: Keep everything in one file so beginners can deploy with copy/paste. */
+    :root{
+      --bg:#0b0f14;--panel:#121923;--muted:#1a2430;--text:#e6edf3;--sub:#9fb0c3;--brand:#6ee7b7;--brand-2:#22d3ee;--danger:#ef4444;
+      --ring:0 0 0 2px rgba(34,211,238,.35), 0 10px 25px rgba(34,211,238,.15);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:linear-gradient(180deg,#0b0f14, #0e141d)}
+    body{color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button{cursor:pointer}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    .nav{display:flex;align-items:center;gap:12px;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:36px;height:36px;border-radius:12px;background:
+      radial-gradient(120px 60px at 20% 20%,var(--brand),transparent),
+      radial-gradient(120px 60px at 80% 80%,var(--brand-2),transparent),
+      linear-gradient(135deg,#0f172a,#111827);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+    .brand h1{font-size:18px;margin:0}
+    .actions{display:flex;align-items:center;gap:8px}
+    .btn{padding:10px 14px;border:1px solid #2b3543;border-radius:12px;background:var(--panel)}
+    .btn:hover{box-shadow:var(--ring)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0f14;border-color:transparent}
+    .hero{margin:10px 0 22px;padding:18px;border:1px solid #243040;border-radius:16px;background:
+      radial-gradient(800px 300px at 20% -20%,rgba(34,211,238,.08),transparent),
+      radial-gradient(800px 300px at 80% 120%,rgba(110,231,183,.08),transparent),
+      var(--panel)}
+    .hero h2{margin:6px 0 8px;font-size:24px}
+    .hero p{margin:0;color:var(--sub)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .input, select{background:#0e1620;border:1px solid #263245;border-radius:12px;color:var(--text);padding:10px 12px;outline:none}
+    .grid{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:14px}
+    @media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+    .card{border:1px solid #233142;background:linear-gradient(180deg,#111827,#0e151f);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+    .card .img-wrap{aspect-ratio:4/3;background:#0b1018;display:grid;place-items:center}
+    .card h3{font-size:16px;margin:12px 12px 4px}
+    .price{margin:0 12px 12px;color:var(--brand)}
+    .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 12px 12px}
+    .tag{font-size:12px;padding:4px 8px;border:1px dashed #2a384c;border-radius:999px;color:var(--sub)}
+    .card .row{display:flex;gap:8px;margin:0 12px 12px}
+    .card .row .btn{flex:1}
+    .empty{padding:30px;border:1px dashed #2a384c;border-radius:16px;text-align:center;color:var(--sub)}
+    .footer{opacity:.8;margin:28px 0 8px;font-size:14px}
+    .footer a{color:var(--brand-2)}
+    /* Cart drawer */
+    .drawer{position:fixed;inset:0 0 0 auto;display:none}
+    .drawer.open{display:block}
+    .backdrop{position:absolute;inset:0;background:rgba(2,6,14,.5)}
+    .panel{position:absolute;right:0;top:0;bottom:0;background:var(--panel);width:360px;max-width:90vw;border-left:1px solid #243040;display:flex;flex-direction:column}
+    .panel header{padding:14px;border-bottom:1px solid #243040;display:flex;justify-content:space-between;align-items:center}
+    .panel main{padding:14px;overflow:auto;flex:1}
+    .panel footer{padding:14px;border-top:1px solid #243040;display:grid;gap:8px}
+    .line{display:flex;gap:10px;align-items:center;border:1px solid #223042;border-radius:12px;padding:10px;margin-bottom:10px;background:#0c1320}
+    .line img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+    .qty{display:flex;align-items:center;gap:8px;margin-left:auto}
+    .qty button{width:26px;height:26px;border-radius:8px;border:1px solid #2a384c;background:#0b111a}
+    .danger{color:#ffb4b4}
+    .total{display:flex;justify-content:space-between;font-weight:600}
+    .muted{color:var(--sub)}
+    /* Dialog */
+    dialog{border:none;border-radius:16px;padding:0;background:var(--panel);color:var(--text);width:min(720px,92vw)}
+    dialog::backdrop{background:rgba(2,6,14,.65)}
+    .dialog-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #243040}
+    .dialog-body{padding:16px}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#0d1420;border:1px solid #223042;padding:10px;border-radius:12px;overflow:auto}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>My Shop</h1>
+      </div>
+      <div class="actions">
+        <button class="btn" id="btnOpenCart" aria-label="Open cart">🛒 Cart <span id="cartCount">0</span></button>
+        <a class="btn primary" href="#" id="btnShowHow" role="button">How this works</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h2>Beautiful starter store for your portfolio</h2>
+      <p>Edit one file, deploy on GitHub Pages, add products, and you’re done. Optionally plug in Stripe Payment Links later.</p>
+    </section>
+
+    <section class="toolbar" role="search">
+      <input class="input" id="q" placeholder="Search products…" />
+      <select id="sort">
+        <option value="popular">Sort: Popular</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="name-asc">Name: A → Z</option>
+        <option value="name-desc">Name: Z → A</option>
+      </select>
+      <select id="filter">
+        <option value="all">All tags
