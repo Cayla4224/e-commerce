@@ -1,0 +1,77 @@
+2025-09-22T17:19:42.240Z corepack Checking /workspaces/e-commerce/package.json
+2025-09-22T17:19:42.243Z corepack Checking /workspaces/e-commerce/.corepack.env
+2025-09-22T17:19:42.243Z corepack No env file found at /workspaces/e-commerce/.corepack.env
+2025-09-22T17:19:42.243Z corepack /workspaces/e-commerce/package.json defines pnpm@9.7.1 as local package manager
+2025-09-22T17:19:42.244Z corepack Using pnpm@9.7.1 as defined in project manifest /workspaces/e-commerce/package.json
+2025-09-22T17:19:42.250Z corepack Reusing pnpm@9.7.1 found in /home/node/.cache/node/corepack/v1/pnpm/9.7.1
+prisma:engines binaries to download libquery-engine, schema-engine +204ms
+prisma:get-platform Found distro info:
+{
+  "targetDistro": "debian",
+  "familyDistro": "debian",
+  "originalDistro": "debian"
+} +7ms
+prisma:get-platform Trying platform-specific paths for "debian" (and "ubuntu") +0ms
+prisma:get-platform Found libssl.so file using platform-specific paths: libssl.so.1.1 +2ms
+prisma:get-platform The parsed libssl version is: 1.1.x +1ms
+prisma:loadEnv project root found at /workspaces/e-commerce/package.json +341ms
+prisma:getSchema prismaConfig {
+  "packagePath": "/workspaces/e-commerce/package.json"
+} +2ms
+prisma:tryLoadEnv Environment variables not found at null +1ms
+prisma:tryLoadEnv Environment variables not found at undefined +0ms
+prisma:tryLoadEnv No Environment variables loaded +0ms
+prisma:getSchema prismaConfig {
+  "packagePath": "/workspaces/e-commerce/package.json"
+} +1ms
+prisma:getSchema Checking existence of /workspaces/e-commerce/schema.prisma +1ms
+prisma:getSchema Reading schema from single file /workspaces/e-commerce/schema.prisma +0ms
+prisma:getSchema Checking existence of /workspaces/e-commerce/prisma/schema.prisma +0ms
+prisma:getSchema Reading schema from single file /workspaces/e-commerce/prisma/schema.prisma +1ms
+prisma:getSchema Reading schema from multiple files /workspaces/e-commerce/prisma/schema +1ms
+Prisma schema loaded from prisma/schema.prisma
+prisma:getConfig Using getConfig Wasm +0ms
+prisma:getConfig config data retrieved without errors in getConfig Wasm +12ms
+prisma:get-platform Found distro info:
+{
+  "targetDistro": "debian",
+  "familyDistro": "debian",
+  "originalDistro": "debian"
+} +2ms
+prisma:get-platform Trying platform-specific paths for "debian" (and "ubuntu") +0ms
+prisma:get-platform Found libssl.so file using platform-specific paths: libssl.so.1.1 +2ms
+prisma:get-platform The parsed libssl version is: 1.1.x +0ms
+prisma:getSchema Reading schema from single file /workspaces/e-commerce/prisma/schema.prisma +1ms
+prisma:getConfig Using getConfig Wasm +102ms
+prisma:getConfig config data retrieved without errors in getConfig Wasm +2ms
+prisma:getDMMF Using getDmmf Wasm +0ms
+prisma:getDMMF Using given datamodel +1ms
+prisma:getDMMF error of type "wasm-error" in getDmmfWasm:
+ {
+  "reason": "(get-dmmf wasm)",
+  "error": {}
+} +20ms
+Error: GetDmmfError: Prisma schema validation - (get-dmmf wasm)
+Error code: P1012
+[1;91merror[0m: [1mError validating: You defined the enum `OrderStatus`. But the current connector does not support enums.[0m
+  [1;94m-->[0m  [4mprisma/schema.prisma:41[0m
+[1;94m   | [0m
+[1;94m40 | [0m
+[1;94m41 | [0m[1;91menum OrderStatus {[0m
+[1;94m42 | [0m  PENDING
+[1;94m43 | [0m  PAID
+[1;94m44 | [0m  FAILED
+[1;94m45 | [0m}
+[1;94m   | [0m
+
+Validation Error Count: 1
+[Context: getDmmf]
+
+Prisma CLI Version : 5.18.0
+    at /workspaces/e-commerce/node_modules/.pnpm/prisma@5.18.0/node_modules/prisma/build/index.js:267:269
+    at e.with (/workspaces/e-commerce/node_modules/.pnpm/prisma@5.18.0/node_modules/prisma/build/index.js:239:12359)
+    at WE (/workspaces/e-commerce/node_modules/.pnpm/prisma@5.18.0/node_modules/prisma/build/index.js:267:63)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Ko (/workspaces/e-commerce/node_modules/.pnpm/prisma@5.18.0/node_modules/prisma/build/index.js:419:1328)
+    at async Sm.parse (/workspaces/e-commerce/node_modules/.pnpm/prisma@5.18.0/node_modules/prisma/build/index.js:1457:722)
+    at async lPt (/workspaces/e-commerce/node_modules/.pnpm/prisma@5.18.0/node_modules/prisma/build/index.js:1999:1678)
